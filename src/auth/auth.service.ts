@@ -22,14 +22,14 @@ export class AuthService {
     return null;
   }
 
-  async signup(signupInput: SignUpInput) {
-    const user = await this.ownersService.findOne(signupInput.email);
+  async signUp(signUpInput: SignUpInput) {
+    const user = await this.ownersService.findOne(signUpInput.email);
     if (user) {
       throw new ConflictException('User already exists');
     }
 
-    const password = await bcrypt.hash(signupInput.password, 10);
-    return this.ownersService.create({ ...signupInput, password });
+    const password = await bcrypt.hash(signUpInput.password, 10);
+    return this.ownersService.create({ ...signUpInput, password });
   }
 
   async login(user: Owner): Promise<LoginResponse> {

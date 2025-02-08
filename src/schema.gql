@@ -26,7 +26,7 @@ type Query {
 
 type Mutation {
   createPet(createPetInput: CreatePetInput!): Pet!
-  signup(signupInput: SignUpInput!): Owner!
+  signUp(signUpInput: SignUpInput!): Owner!
   login(loginInput: LoginInput!): LoginResponse!
 }
 
