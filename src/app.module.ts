@@ -6,9 +6,16 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { PetsModule } from './pets/pets.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OwnersModule } from './owners/owners.module';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       driver: ApolloDriver,
@@ -20,6 +27,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
     PetsModule,
+    OwnersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

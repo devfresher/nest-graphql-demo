@@ -8,6 +8,40 @@ type Pet {
   type: String
 }
 
+type Owner {
+  id: Int!
+  name: String!
+  email: String!
+}
+
+type LoginResponse {
+  user: Owner!
+  access_token: String!
+}
+
 type Query {
+  pet(id: Int!): Pet!
   pets: [Pet!]!
+}
+
+type Mutation {
+  createPet(createPetInput: CreatePetInput!): Pet!
+  signup(signupInput: SignUpInput!): Owner!
+  login(loginInput: LoginInput!): LoginResponse!
+}
+
+input CreatePetInput {
+  name: String!
+  type: String
+}
+
+input SignUpInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }
