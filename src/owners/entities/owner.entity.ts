@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Pet } from 'src/pets/entities/pet.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -18,4 +19,8 @@ export class Owner {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Pet, (pet) => pet.owner)
+  @Field(() => [Pet])
+  pets?: Pet[];
 }

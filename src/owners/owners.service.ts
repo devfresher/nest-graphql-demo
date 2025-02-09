@@ -22,4 +22,8 @@ export class OwnersService {
   async findOne(email: string) {
     return await this.ownerRepository.findOneBy({ email });
   }
+
+  async findOneById(id: number) {
+    return await this.ownerRepository.findOneBy({ id });
+  }
 }

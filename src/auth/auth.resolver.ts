@@ -18,7 +18,7 @@ export class AuthResolver {
 
   @Mutation(() => LoginResponse)
   @UseGuards(GqlAuthGuard)
-  async login(@Args('loginInput') loginInput: LoginInput, @Context() ctx) {
+  async login(@Args('loginInput') loginInput: LoginInput, @Context() ctx: any) {
     // TODO: check the type of ctx
     return this.authService.login(ctx.user);
   }

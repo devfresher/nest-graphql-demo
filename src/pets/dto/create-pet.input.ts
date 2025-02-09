@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { PetType } from './pet-type.enum';
 
 @InputType()
 export class CreatePetInput {
@@ -8,8 +9,7 @@ export class CreatePetInput {
   @Field(() => String)
   name: string;
 
-  @IsString()
-  @IsOptional()
-  @Field(() => String, { nullable: true })
-  type?: string;
+  @IsEnum(PetType)
+  @Field(() => String)
+  type: PetType;
 }
